@@ -4,7 +4,7 @@ import "dotenv/config";
 const PORT = process.env.PORT;
 import {
   getTask,
-  getOneTask,
+  getTaskById,
   addTask,
   updateTask,
   deleteTask,
@@ -19,15 +19,15 @@ app.use("/", express.static(path.join(__dirname, "views")));
 
 app.use(express.json());
 
-app.get("/", getTask);
+app.get("/tasks", getTask);
 
-app.get("/", getOneTask);
+app.get("/tasks/:id", getTaskById);
 
-app.post("/", addTask);
+app.post("/tasks", addTask);
 
-app.put("/", updateTask);
+app.put("/tasks/:id", updateTask);
 
-app.delete("/", deleteTask);
+app.delete("/tasks/:id", deleteTask);
 
 app.listen(PORT, () => {
   console.log("Server is running in Port: " + PORT);

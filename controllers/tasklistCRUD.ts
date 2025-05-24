@@ -1,24 +1,24 @@
+import { eq } from "drizzle-orm";
 import { db } from "../src/db/database";
 import { tasklist } from "../src/db/schema";
-import { asc, eq } from "drizzle-orm";
+import type { Request, Response } from "express";
 
 export const getTask = async (req, res) => {
   try {
     const tasks = await db.select().from(tasklist);
     res.json(tasks);
-    res.end();
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getOneTask = async (req, res) => {
+export const getTaskById = async (req, res) => {
   try {
-    const { ID } = req.body;
+    const { id } = req.params;
     const singleTask = await db
       .select()
       .from(tasklist)
-      .where(eq(tasklist.id, ID));
+      .where(eq(tasklist.id, id));
     res.json(singleTask);
     res.end();
   } catch (error) {}
@@ -26,12 +26,9 @@ export const getOneTask = async (req, res) => {
 
 export const addTask = async (req, res) => {
   try {
-    const { Title, Description } = await req.body;
-    await db
-      .insert(tasklist)
-      .values({ title: Title, description: Description });
-    console.log("Datos agregados!!!");
-    res.end();
+    const { title, description } = await req.body;
+    const [task] = await db.insert(tasklist).values({ title, description });
+    res.status(201).json(task);
   } catch (error) {
     console.log(error);
   }
@@ -40,21 +37,24 @@ export const addTask = async (req, res) => {
 /**==================================UPDATE */
 export const updateTask = async (req, res) => {
   try {
-    const { ID, Title, Description } = req.body;
-    await db
+    const { id } = req.params;
+    const { title, description } = req.body;
+    const [task] = await db
       .update(tasklist)
-      .set({ title: Title, description: Description })
-      .where(eq(tasklist.id, ID));
-    console.log("item updated!!");
-    res.end();
+      .set({ title, description })
+      .where(eq(tasklist.id, id));
+    res.status(200).json(task);
   } catch (error) {
     console.log(error);
   }
 };
 
-export const deleteTask = async (req, res) => {
-  const { ID } = req.body;
-  await db.delete(tasklist).where(eq(tasklist.id, ID));
-  console.log("Item deleted!!");
-  res.end();
+export const deleteTask = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    await db.delete(tasklist).where(eq(tasklist.id, Number(id)));
+    res.status(204).end();
+  } catch (error) {
+    console.log(error);
+  }
 };
