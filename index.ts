@@ -5,7 +5,7 @@ const PORT = process.env.PORT;
 import {
   getTask,
   getTaskById,
-  postTask,
+  addTask,
   updateTask,
   deleteTask,
 } from "./controllers/tasklistCRUD";
@@ -23,7 +23,7 @@ app.get("/tasks", getTask);
 
 app.get("/tasks/:id", getTaskById);
 
-app.post("/tasks", postTask);
+app.post("/tasks", addTask);
 
 app.put("/tasks/:id", updateTask);
 
