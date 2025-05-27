@@ -1,0 +1,65 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+}
+
+h1 {
+  text-align: center;
+  padding: 10px;
+  margin: 20px 40px;
+  background-color: hsl(219, 54%, 73%);
+}
+
+#box-containers {
+  display: flex;
+  gap: 10px;
+  margin: 5px;
+}
+#box-containers div {
+  padding: 30px;
+  border: solid black 3px;
+  border-radius: 20px;
+  flex: 1;
+  box-shadow: hsl(219, 54%, 73%) 8px 3px;
+  max-height: 500px;
+}
+#box-containers div form {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#box-containers div form textarea {
+  min-width: 340px;
+  max-width: 600px;
+  min-height: 200px;
+  max-height: 300px;
+}
+
+.tasks-list {
+  max-height: 300px;
+  overflow: hidden;
+  overflow-y: auto;
+  padding-top: 10px;
+}
+.tasks-list li:hover {
+  background-color: aquamarine;
+}
+
+.successful-message {
+  width: fit-content;
+  border: solid 2px black;
+  border-radius: 20px;
+  padding: 6px 30px;
+  text-align: center;
+  font-size: 30px;
+  visibility: hidden;
+  position: absolute;
+  top: -70px;
+  transition: all 4.5s ease-in;
+  left: 45%;
+}
+
+/*# sourceMappingURL=styles.css.map */
