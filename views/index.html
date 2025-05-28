@@ -43,8 +43,8 @@
       </div>
 
       <div>
-        <h2>Create Task</h2>
-        <form>
+        <h2>Your Task</h2>
+        <form class="form-edit">
           <label for="title">Task Title</label>
           <input type="text" id="title" name="title" required maxlength="100" />
           <label for="description">Task Description</label>
@@ -52,10 +52,10 @@
             id="description"
             name="description"
             maxlength="1000"
-            placeholder="insert your description here...."
             required
           ></textarea>
-          <button>submit Task</button>
+          <button value="update-task">Update</button>
+          <button value="delete-task">Delete</button>
         </form>
       </div>
     </div>

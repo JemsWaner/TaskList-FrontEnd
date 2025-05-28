@@ -23,7 +23,10 @@ h1 {
   border-radius: 20px;
   flex: 1;
   box-shadow: hsl(219, 54%, 73%) 8px 3px;
-  max-height: 500px;
+  min-height: 500px;
+}
+#box-containers div h2 {
+  text-align: center;
 }
 #box-containers div form {
   padding-top: 10px;
@@ -31,21 +34,32 @@ h1 {
   flex-direction: column;
   gap: 10px;
 }
+#box-containers div form input,
+#box-containers div form button {
+  font-size: 24px;
+  padding: 10px;
+}
 #box-containers div form textarea {
-  min-width: 340px;
-  max-width: 600px;
+  resize: none;
   min-height: 200px;
   max-height: 300px;
+  padding: 10px;
+  font-size: 24px;
 }
 
 .tasks-list {
-  max-height: 300px;
+  max-height: 450px;
   overflow: hidden;
   overflow-y: auto;
   padding-top: 10px;
+  font-size: 24px;
 }
 .tasks-list li:hover {
   background-color: aquamarine;
+  cursor: pointer;
+}
+.tasks-list li:focus {
+  background-color: hsl(160, 34%, 47%);
 }
 
 .successful-message {

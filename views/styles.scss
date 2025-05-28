@@ -24,29 +24,42 @@ h1 {
     border-radius: 20px;
     flex: 1;
     box-shadow: $page-color 8px 3px;
-    max-height: 500px;
+    min-height: 500px;
+    h2 {
+      text-align: center;
+    }
     form {
       padding-top: 10px;
       display: flex;
       flex-direction: column;
       gap: 10px;
-
+      input,
+      button {
+        font-size: 24px;
+        padding: 10px;
+      }
       textarea {
-        min-width: 340px;
-        max-width: 600px;
+        resize: none;
         min-height: 200px;
         max-height: 300px;
+        padding: 10px;
+        font-size: 24px;
       }
     }
   }
 }
 .tasks-list {
-  max-height: 300px;
+  max-height: 450px;
   overflow: hidden;
   overflow-y: auto;
   padding-top: 10px;
+  font-size: 24px;
   li:hover {
     background-color: aquamarine;
+    cursor: pointer;
+  }
+  li:focus {
+    background-color: hsl(160, 34%, 47%);
   }
 }
 .successful-message {
