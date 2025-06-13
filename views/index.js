@@ -1,7 +1,24 @@
 const formCreate = document.querySelector(".form-create");
 const formEdit = document.querySelector(".form-edit");
 const tasksLists = document.querySelector(".tasks-list");
+let statusAlert = document.querySelector(".successful-message");
+let createTaskDiv = document.querySelector(".create-task");
+let selectTaskDiv = document.querySelector(".select-task");
+let editTaskDiv = document.querySelector(".edit-task");
+let createButon = document.querySelector(".create");
+let editButon = document.querySelector(".edit");
 let url = "http://localhost:8000/tasks/";
+
+function statusAlertBox(test) {
+  statusAlert.classList.add("aaa");
+  let spanText = document.querySelector(".successful-message span");
+
+  spanText.textContent = test;
+
+  setTimeout(() => {
+    statusAlert.classList.remove("aaa");
+  }, 4000);
+}
 
 async function getTasks() {
   tasksLists.innerHTML = "";
@@ -31,6 +48,7 @@ async function addTask(event) {
   });
   console.log(data);
   formCreate.reset();
+  statusAlertBox("Task added successfuly");
   getTasks();
 }
 
@@ -50,6 +68,8 @@ async function editTask(event, id) {
   console.log(data);
   formEdit.reset();
   getTasks();
+  statusAlertBox("Task edited successfuly");
+  showTaskList();
 }
 
 async function deleteTask(id) {
@@ -57,15 +77,17 @@ async function deleteTask(id) {
     method: "DELETE",
   });
   console.log("deleted");
+  console.log(result);
   getTasks();
   formEdit.reset();
+  statusAlertBox("Task deleted successfully");
+  showTaskList();
 }
 
 formCreate.addEventListener("submit", addTask);
 getTasks();
 
 let selectId;
-
 function selectTaskOfList() {
   const li = document.querySelectorAll("li");
   li.forEach((i) => {
@@ -77,6 +99,8 @@ function selectTaskOfList() {
 }
 
 async function getSingleTask(id) {
+  editTaskDiv.style.display = "block";
+  selectTaskDiv.style.display = "none";
   console.log("My new id:", id);
   const data = await fetch(url + id);
   let parsedData = await data.json();
@@ -101,3 +125,17 @@ async function editOrDeleteTask(event) {
   }
 }
 formEdit.addEventListener("submit", editOrDeleteTask);
+
+let showCreateTask = () => {
+  createTaskDiv.style.display = "block";
+  selectTaskDiv.style.display = "none";
+  editTaskDiv.style.display = "none";
+};
+let showTaskList = () => {
+  createTaskDiv.style.display = "none";
+  selectTaskDiv.style.display = "block";
+  editTaskDiv.style.display = "none";
+};
+createButon.addEventListener("click", showCreateTask);
+
+editButon.addEventListener("click", showTaskList);

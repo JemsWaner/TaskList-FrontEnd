@@ -15,16 +15,17 @@ h1 {
 }
 
 #box-containers {
-  display: flex;
-  gap: 10px;
   margin: 5px;
+  width: fit-content;
+  margin: auto;
   div {
     padding: 30px;
     border: solid black 3px;
     border-radius: 20px;
-    flex: 1;
     box-shadow: $page-color 8px 3px;
+    width: 600px;
     min-height: 500px;
+    margin-bottom: 20px;
     h2 {
       text-align: center;
     }
@@ -48,6 +49,12 @@ h1 {
     }
   }
 }
+.select-task {
+  display: none;
+}
+.edit-task {
+  display: none;
+}
 .tasks-list {
   max-height: 450px;
   overflow: hidden;
@@ -66,13 +73,24 @@ h1 {
   width: fit-content;
   border: solid 2px black;
   border-radius: 20px;
-  padding: 6px 30px;
+  padding: 30px;
   text-align: center;
   font-size: 30px;
-
-  visibility: hidden;
   position: absolute;
-  top: -70px;
-  transition: all 4.5s ease-in;
-  left: 45%;
+  top: -200px;
+  background-color: white;
+  transition: all 1s ease-in;
+  left: 50%;
+}
+.aaa {
+  top: 0;
+}
+.navigation-buttons {
+  width: 600px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: auto;
+  button {
+    padding: 10px;
+  }
 }

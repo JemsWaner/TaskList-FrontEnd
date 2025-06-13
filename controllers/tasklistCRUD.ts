@@ -89,7 +89,7 @@ export const updateTask = async (req: Request, res: Response) => {
 
     if (!isValidId(id)) {
       res.status(400).json({
-        id: "The given Id is not valid",
+        error: "The given Id is not valid",
       });
     }
     let returnedTask = await taskExists(id);
@@ -123,7 +123,8 @@ export const deleteTask = async (req: Request, res: Response) => {
       res.status(204).json({ success: "Task deleted successfully" }).end();
     } else {
       res.status(400).json({
-        id: "The parametrer id inserted is not a number or was not found in the database",
+        error:
+          "The parametrer id inserted is not a number or was not found in the database",
       });
     }
   } catch (error) {
